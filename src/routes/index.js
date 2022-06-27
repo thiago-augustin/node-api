@@ -1,6 +1,6 @@
 import express from "express";
 import users from "./userRoutes.js"
-//import tasks from "./tasksRoutes.js"
+import tasks from "./taskRoutes.js"
 
 const routes = (app) => {
   app.route('/').get((req, res) => {
@@ -10,7 +10,7 @@ const routes = (app) => {
   app.use(
     express.json(),
     users,
-    //tasks
+    tasks
   )
 }
 
