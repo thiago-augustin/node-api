@@ -23,14 +23,19 @@ class UserController {
   static createUser = (req, res) => {
     let user = new users(req.body);
 
-    user.save((err) => {
+    if(user.isValid()){
+        user.save((err) => {
+    
+          if(err) {
+            res.status(500).send({message: `${err.message} - Failed to register user.`})
+          } else {
+            res.status(201).send(user.toJSON())
+          }
+        })
+    }else{
+        res.status(500).send({message: `Failed to register user. Check the information and try again!`})
+    }
 
-      if(err) {
-        res.status(500).send({message: `${err.message} - Failed to register user.`})
-      } else {
-        res.status(201).send(user.toJSON())
-      }
-    })
   }
 
   static updateUser = (req, res) => {
