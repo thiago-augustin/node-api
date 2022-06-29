@@ -52,7 +52,7 @@ function validateDate(birthDate) {
 }
 
 function validatePass(pass) {
-  if(pass.length > 6){
+  if(pass.length >= 6){
     return true;
   }else {
     return false;
