@@ -12,6 +12,14 @@ const TaskSchema = new mongoose.Schema(
   }
 )
 
+TaskSchema.methods.isValid = function(){
+  return validateDate(this.date);
+}
+
+function validateDate(date) {
+    return /([0-9]{2}[\/]?[0-9]{2}[\/]?[0-9]{4}[ X][0-9]{2}[\:]?[0-9]{2})/.test(date); 
+}
+
 const tasks = mongoose.model("tasks", TaskSchema)
 
 export default tasks;
